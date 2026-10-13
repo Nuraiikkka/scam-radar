@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+python-multipart
+sqlalchemy
+python-decouple
+yt-dlp

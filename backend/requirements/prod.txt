@@ -1,0 +1,4 @@
+-r base.txt
+openai-whisper
+opencv-python-headless
+easyocr
