@@ -1,0 +1,199 @@
+{
+  "source": "https://www.kaggle.com/datasets/julesgregoryagustin/training-filipino-scam-dataset",
+  "version": 6,
+  "license": "CC BY-NC-SA 4.0",
+  "seed": 42,
+  "requested_per_class_topic": 50,
+  "max_rank": 1,
+  "eligible": {
+    "crypto/scam": 84,
+    "crypto/legitimate": 148,
+    "giftcard/scam": 165,
+    "giftcard/legitimate": 129
+  },
+  "downloaded": 162,
+  "labels": {
+    "legitimate": 64,
+    "scam": 98
+  },
+  "strata": {
+    "crypto/legitimate": 50,
+    "crypto/scam": 48,
+    "giftcard/scam": 50,
+    "giftcard/legitimate": 14
+  },
+  "errors": [
+    {
+      "file": "crypto/scam/youtube_ZhqhWZyna18/youtube_ZhqhWZyna18.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "crypto/scam/youtube_ZNuqUtPYhZc/youtube_ZNuqUtPYhZc.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_QgsGF0IaJSk/youtube_QgsGF0IaJSk.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_SAB1WMn97k4/youtube_SAB1WMn97k4.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_paSWqsiDqcI/youtube_paSWqsiDqcI.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_K_c0cfP7-l4/youtube_K_c0cfP7-l4.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_PAMXy_oZfiM/youtube_PAMXy_oZfiM.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_wP0Tf5jY2S0/youtube_wP0Tf5jY2S0.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_U_RbkeMypY0/youtube_U_RbkeMypY0.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_DTm0KrpuqZs/youtube_DTm0KrpuqZs.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_jlJJ3mwluC0/youtube_jlJJ3mwluC0.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_Mpcms5CzupY/youtube_Mpcms5CzupY.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_Da6zmCz7jYk/youtube_Da6zmCz7jYk.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_iUg2AO938AU/youtube_iUg2AO938AU.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_nIdidYUCp-E/youtube_nIdidYUCp-E.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_GY5lePudZBg/youtube_GY5lePudZBg.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_xUwsj0HEwAI/youtube_xUwsj0HEwAI.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_te5Bu4UUd30/youtube_te5Bu4UUd30.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_m3RP6OKK-PQ/youtube_m3RP6OKK-PQ.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_8rXy001aup0/youtube_8rXy001aup0.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_iubPIg1iB-Q/youtube_iubPIg1iB-Q.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_GICqThm5j38/youtube_GICqThm5j38.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_8Y9fuy7h84E/youtube_8Y9fuy7h84E.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_E5lYtn9vrQM/youtube_E5lYtn9vrQM.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_QGp3r_Pg2K0/youtube_QGp3r_Pg2K0.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_UbKdgTseCGg/youtube_UbKdgTseCGg.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_-4uCsG6UCps/youtube_-4uCsG6UCps.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_HwwieWNfhn4/youtube_HwwieWNfhn4.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_B4p-wCxtEwY/youtube_B4p-wCxtEwY.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_3HgoSMYxfyM/youtube_3HgoSMYxfyM.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_6BOfhJ6_ASQ/youtube_6BOfhJ6_ASQ.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_LANGO_RwYN8/youtube_LANGO_RwYN8.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_jWeIkKW40mA/youtube_jWeIkKW40mA.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_vArf7PtO_i0/youtube_vArf7PtO_i0.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_7DiMpjNXddQ/youtube_7DiMpjNXddQ.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_C3y_Q7yFAvU/youtube_C3y_Q7yFAvU.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_tt2PRXHbz58/youtube_tt2PRXHbz58.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "giftcard/legitimate/youtube_qxPP96xGGCU/youtube_qxPP96xGGCU.json",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "manifest_errors": [
+    {
+      "topic": "ewallet",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "topic": "giveaway",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "topic": "p2e",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "topic": "task",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "raw_video_downloaded": false,
+  "warning": "Weak source labels; rank 0 is agentic verification, not confirmed human ground truth."
+}

@@ -1,6 +1,6 @@
 import time
 
-from app.services import audio, vision, text_classifier, fusion
+from app.services import audio, vision, text_classifier, fusion, ml_classifier
 
 
 def run(video_path):
@@ -14,6 +14,11 @@ def run(video_path):
     category, text_score, reasons = text_classifier.classify(all_text)
 
     final_category, final_score = fusion.fuse(category, text_score, v.score)
+    prediction = ml_classifier.predict(transcript, ' '.join(v.ocr_text))
+    if prediction['status'] == 'ok':
+        # Preserve category evidence from rules. Binary ML never invents a type
+        # and a negative ML prediction never erases a positive rule finding.
+        final_score = round(max(final_score, prediction['score']), 4)
 
     signals = []
     for reason in reasons:
@@ -31,6 +36,7 @@ def run(video_path):
         "signals": signals,
         "duration_sec": v.duration_sec,
         "processing_ms": int((time.time() - start) * 1000),
+        "ml_prediction": prediction,
     }
 
 
@@ -48,4 +54,6 @@ def run_mock():
         ],
         "duration_sec": 0.0,
         "processing_ms": 5,
+        "ml_prediction": {"status": "mock", "verdict": None, "score": None, "threshold": None,
+                          "model": "optiscam_binary_tfidf", "experimental": True},
     }

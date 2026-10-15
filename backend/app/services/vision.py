@@ -35,8 +35,10 @@ def rules_on_text(lines: List[str]) -> "tuple[float, List[str]]":
         score += 0.25; cues.append("Link / messenger contact shown on screen")
     if PHONE_RE.search(blob):
         score += 0.15; cues.append("Phone number shown on screen")
-    if PERCENT_RE.search(blob):
-        score += 0.2; cues.append("Large percentage claim on screen")
+    if PERCENT_RE.search(blob) and re.search(
+        r"profit|return|yield|interest|доход|прибыл|доходност", blob, re.I
+    ):
+        score += 0.2; cues.append("Percentage shown alongside an investment return claim")
     if MONEY_RE.search(blob):
         score += 0.2; cues.append("Money amounts shown on screen")
     return min(1.0, score), cues
@@ -50,7 +52,10 @@ def sample_frames(video_path: str):
     fps = cap.get(cv2.CAP_PROP_FPS) or 25
     total = cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0
     duration = total / fps if fps else 0
+    # Spread a limited frame budget across the whole video, not just its intro.
     step = max(1, int(fps * config.FRAME_EVERY_SEC))
+    if total > 1 and config.MAX_FRAMES > 1:
+        step = max(step, int((total - 1) / (config.MAX_FRAMES - 1)))
     frames, i = [], 0
     while len(frames) < config.MAX_FRAMES:
         cap.set(cv2.CAP_PROP_POS_FRAMES, i)

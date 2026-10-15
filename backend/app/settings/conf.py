@@ -15,3 +15,8 @@ FRAME_EVERY_SEC = config("SCAMRADAR_FRAME_EVERY_SEC", default=2.0, cast=float)
 MAX_FRAMES = config("SCAMRADAR_MAX_FRAMES", default=15, cast=int)
 CORS_ORIGINS = config("SCAMRADAR_CORS_ORIGINS", default="*", cast=Csv())
 LOG_LEVEL = config("SCAMRADAR_LOG_LEVEL", default="INFO")
+ML_ENABLED = config("SCAMRADAR_ML_ENABLED", default=True, cast=bool)
+ML_MODEL_PATH = config(
+    "SCAMRADAR_ML_MODEL_PATH",
+    default=str(Path(__file__).resolve().parents[3] / 'artifacts/models/binary_baseline.joblib'),
+)

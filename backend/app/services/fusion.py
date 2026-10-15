@@ -1,5 +1,9 @@
 def fuse(text_category, text_score, vision_score):
-    final_score = text_score * 0.7 + vision_score * 0.3
+    # OCR text is already classified with speech. Missing generic visual cues
+    # must not dilute strong semantic evidence, including silent videos.
+    text_score = max(0.0, min(1.0, text_score))
+    vision_score = max(0.0, min(1.0, vision_score))
+    final_score = text_score + (1 - text_score) * vision_score * 0.3
 
     if final_score > 1:
         final_score = 1

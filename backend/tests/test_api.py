@@ -1,7 +1,3 @@
-import os
-
-os.environ["SCAMRADAR_DATABASE_URL"] = "sqlite:///./test.db"
-
 from fastapi.testclient import TestClient
 from app.main import app
 
@@ -33,6 +29,8 @@ def test_analyze_file_and_everything_else():
     assert 0 <= data["risk_score"] <= 1
     assert data["category"] in CATEGORIES
     assert isinstance(data["reasons"], list)
+    assert data["assessment"]["status"] in {"risk_signals_detected", "insufficient_evidence"}
+    assert isinstance(data["assessment"]["warnings"], list)
 
     analysis_id = data["id"]
     assert client.get("/analyses/" + str(analysis_id)).status_code == 200

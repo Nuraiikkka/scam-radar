@@ -6,11 +6,12 @@ from typing import Optional
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from starlette.concurrency import run_in_threadpool
 
 from app.settings import settings
 from app.db import get_db
-from app.models import Video, Analysis, Signal, Feedback
-from app.services import pipeline, downloader
+from app.models import Video, Analysis, Signal, Feedback, ModelPrediction
+from app.services import pipeline, downloader, text_classifier
 
 router = APIRouter()
 log = logging.getLogger(__name__)
@@ -20,6 +21,22 @@ def analysis_to_dict(a):
     reasons = []
     for s in a.signals:
         reasons.append(s.description)
+
+    prediction = a.model_prediction.payload if a.model_prediction else {'status': 'not_recorded'}
+    assessment = text_classifier.evidence_summary(a.transcript or "", a.ocr_text or "", a.category)
+    ml_scam = prediction.get('status') == 'ok' and prediction.get('verdict') == 'scam'
+    verdict = 'suspected_scam' if ml_scam or a.category != 'none' else 'insufficient_evidence'
+    if prediction.get('status') == 'ok':
+        assessment['warnings'].append('Experimental binary ML score is not a calibrated probability; source labels are partly automated')
+        assessment['warnings'].append('ML was trained on a small crypto/giftcard dataset and is not validated for all scam types or languages')
+        if ml_scam:
+            assessment['status'] = 'risk_signals_detected'
+            if a.category == 'none':
+                assessment['warnings'] = [w for w in assessment['warnings'] if not w.startswith('No matching fraud evidence')]
+                assessment['warnings'].append('ML detected risk but the scam category could not be determined')
+    elif prediction.get('status') not in {'disabled', 'mock', 'not_recorded'}:
+        assessment['warnings'].append('ML prediction unavailable: ' + prediction.get('status', 'unknown'))
+    assessment['category_determined'] = a.category != 'none'
 
     return {
         "id": a.id,
@@ -34,6 +51,9 @@ def analysis_to_dict(a):
         "processing_ms": a.processing_ms,
         "source_url": a.video.source_url,
         "created_at": a.created_at.isoformat(),
+        "assessment": assessment,
+        "verdict": verdict,
+        "ml_prediction": prediction,
     }
 
 
@@ -45,6 +65,9 @@ async def analyze(
 ):
     if file is not None and file.filename == "":
         file = None
+
+    # Swagger's optional URL placeholder is not the uploaded file's source.
+    url = None if file is not None else (url.strip() if url else None)
 
     if file is None and not url:
         raise HTTPException(status_code=400, detail="Send a video file or a TikTok url")
@@ -72,7 +95,7 @@ async def analyze(
                 except downloader.DownloadError as error:
                     raise HTTPException(status_code=400, detail=str(error))
 
-            result = pipeline.run(video_path)
+            result = await run_in_threadpool(pipeline.run, video_path)
     finally:
         if video_path != "" and os.path.exists(video_path):
             os.remove(video_path)
@@ -97,6 +120,9 @@ async def analyze(
     )
     db.add(analysis)
     db.commit()
+
+    if 'ml_prediction' in result:
+        db.add(ModelPrediction(analysis_id=analysis.id, payload=result['ml_prediction']))
 
     for s in result["signals"]:
         db.add(Signal(analysis_id=analysis.id, source=s["source"], description=s["description"][:300]))
@@ -173,13 +199,19 @@ def add_feedback(analysis_id: int, body: FeedbackIn, db: Session = Depends(get_d
 @router.get("/stats")
 def stats(db: Session = Depends(get_db)):
     total = db.query(Analysis).count()
-    scams = db.query(Analysis).filter(Analysis.category != "none").count()
 
     by_category = {}
     for category in settings.CATEGORIES:
         by_category[category] = db.query(Analysis).filter(Analysis.category == category).count()
 
     all_rows = db.query(Analysis).all()
+    scams = sum(
+        a.category != 'none' or (
+            a.model_prediction is not None
+            and a.model_prediction.payload.get('status') == 'ok'
+            and a.model_prediction.payload.get('verdict') == 'scam'
+        ) for a in all_rows
+    )
     total_score = 0.0
     for a in all_rows:
         total_score = total_score + a.risk_score

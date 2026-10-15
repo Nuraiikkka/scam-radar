@@ -1,0 +1,246 @@
+{
+  "experiment": "exploratory_binary_transcript_ocr",
+  "dataset_sha256": "1b4195a707d778f2664b581c309758be9f436f6fbbf590326050cf7584771476",
+  "sklearn_version": "1.9.1",
+  "label_source": "OptiScam weak labels; not independently human verified",
+  "license": "CC BY-NC-SA 4.0; research/non-commercial experiment",
+  "features": [
+    "transcript",
+    "ocr_text"
+  ],
+  "excluded_short_ids": [],
+  "rows": 162,
+  "duplicate_components": 161,
+  "split_seed": 42,
+  "split": {
+    "train": {
+      "n": 97,
+      "labels": {
+        "legitimate": 38,
+        "scam": 59
+      },
+      "topics": {
+        "crypto": 58,
+        "giftcard": 39
+      }
+    },
+    "validation": {
+      "n": 32,
+      "labels": {
+        "legitimate": 16,
+        "scam": 16
+      },
+      "topics": {
+        "crypto": 20,
+        "giftcard": 12
+      }
+    },
+    "test": {
+      "n": 33,
+      "labels": {
+        "scam": 23,
+        "legitimate": 10
+      },
+      "topics": {
+        "crypto": 20,
+        "giftcard": 13
+      }
+    }
+  },
+  "C": 0.5,
+  "threshold_selected_on_validation": 0.49999999999999994,
+  "validation_macro_f1": 0.8435972629521017,
+  "test": {
+    "n": 33,
+    "accuracy": 0.8181818181818182,
+    "macro_f1": 0.7847826086956522,
+    "scam_precision": 0.8695652173913043,
+    "scam_recall": 0.8695652173913043,
+    "confusion_matrix_rows_true_0legitimate_1scam": [
+      [
+        7,
+        3
+      ],
+      [
+        3,
+        20
+      ]
+    ],
+    "classification_report": {
+      "legitimate": {
+        "precision": 0.7,
+        "recall": 0.7,
+        "f1-score": 0.7,
+        "support": 10.0
+      },
+      "scam": {
+        "precision": 0.8695652173913043,
+        "recall": 0.8695652173913043,
+        "f1-score": 0.8695652173913043,
+        "support": 23.0
+      },
+      "accuracy": 0.8181818181818182,
+      "macro avg": {
+        "precision": 0.7847826086956522,
+        "recall": 0.7847826086956522,
+        "f1-score": 0.7847826086956522,
+        "support": 33.0
+      },
+      "weighted avg": {
+        "precision": 0.8181818181818182,
+        "recall": 0.8181818181818182,
+        "f1-score": 0.8181818181818182,
+        "support": 33.0
+      }
+    },
+    "roc_auc": 0.9304347826086956,
+    "average_precision": 0.968683571318179
+  },
+  "rules_test_same_records": {
+    "n": 33,
+    "accuracy": 0.45454545454545453,
+    "macro_f1": 0.45,
+    "scam_precision": 0.8571428571428571,
+    "scam_recall": 0.2608695652173913,
+    "confusion_matrix_rows_true_0legitimate_1scam": [
+      [
+        9,
+        1
+      ],
+      [
+        17,
+        6
+      ]
+    ],
+    "classification_report": {
+      "legitimate": {
+        "precision": 0.34615384615384615,
+        "recall": 0.9,
+        "f1-score": 0.5,
+        "support": 10.0
+      },
+      "scam": {
+        "precision": 0.8571428571428571,
+        "recall": 0.2608695652173913,
+        "f1-score": 0.4,
+        "support": 23.0
+      },
+      "accuracy": 0.45454545454545453,
+      "macro avg": {
+        "precision": 0.6016483516483516,
+        "recall": 0.5804347826086956,
+        "f1-score": 0.45,
+        "support": 33.0
+      },
+      "weighted avg": {
+        "precision": 0.7022977022977023,
+        "recall": 0.45454545454545453,
+        "f1-score": 0.43030303030303035,
+        "support": 33.0
+      }
+    }
+  },
+  "per_topic_test": {
+    "crypto": {
+      "n": 20,
+      "accuracy": 0.8,
+      "macro_f1": 0.7916666666666667,
+      "scam_precision": 0.9090909090909091,
+      "scam_recall": 0.7692307692307693,
+      "confusion_matrix_rows_true_0legitimate_1scam": [
+        [
+          6,
+          1
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "classification_report": {
+        "legitimate": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.75,
+          "support": 7.0
+        },
+        "scam": {
+          "precision": 0.9090909090909091,
+          "recall": 0.7692307692307693,
+          "f1-score": 0.8333333333333334,
+          "support": 13.0
+        },
+        "accuracy": 0.8,
+        "macro avg": {
+          "precision": 0.7878787878787878,
+          "recall": 0.8131868131868132,
+          "f1-score": 0.7916666666666667,
+          "support": 20.0
+        },
+        "weighted avg": {
+          "precision": 0.8242424242424242,
+          "recall": 0.8,
+          "f1-score": 0.8041666666666668,
+          "support": 20.0
+        }
+      },
+      "roc_auc": 0.9230769230769231,
+      "average_precision": 0.9493303704842164
+    },
+    "giftcard": {
+      "n": 13,
+      "accuracy": 0.8461538461538461,
+      "macro_f1": 0.7045454545454546,
+      "scam_precision": 0.8333333333333334,
+      "scam_recall": 1.0,
+      "confusion_matrix_rows_true_0legitimate_1scam": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "classification_report": {
+        "legitimate": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.5,
+          "support": 3.0
+        },
+        "scam": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1-score": 0.9090909090909091,
+          "support": 10.0
+        },
+        "accuracy": 0.8461538461538461,
+        "macro avg": {
+          "precision": 0.9166666666666667,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.7045454545454546,
+          "support": 13.0
+        },
+        "weighted avg": {
+          "precision": 0.8717948717948718,
+          "recall": 0.8461538461538461,
+          "f1-score": 0.8146853146853146,
+          "support": 13.0
+        }
+      },
+      "roc_auc": 1.0,
+      "average_precision": 0.9999999999999999
+    }
+  },
+  "limitations": [
+    "Binary source labels do not support all five project scam categories.",
+    "No independent human relabeling performed; scores measure agreement with weak source labels.",
+    "Author IDs unavailable; cross-author independence cannot be established.",
+    "Exact and near text duplicates grouped, but visual/reupload duplicates may remain.",
+    "No fresh TikTok, Russian or Kazakh holdout evaluation.",
+    "Uses supplied ASR/OCR, not end-to-end evaluation of video processing.",
+    "Balanced sample does not represent real-world prevalence; probabilities are uncalibrated."
+  ]
+}

@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, Float, Text, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, Text, DateTime, Boolean, ForeignKey, JSON
 from sqlalchemy.orm import relationship
 
 from app.db import Base
@@ -34,6 +34,17 @@ class Analysis(Base):
     video = relationship("Video", back_populates="analyses")
     signals = relationship("Signal", back_populates="analysis", cascade="all, delete-orphan")
     feedback = relationship("Feedback", back_populates="analysis", cascade="all, delete-orphan")
+    model_prediction = relationship("ModelPrediction", back_populates="analysis", uselist=False, cascade="all, delete-orphan")
+
+
+class ModelPrediction(Base):
+    """Separate table adds ML history without altering existing analyses."""
+    __tablename__ = 'model_predictions'
+
+    id = Column(Integer, primary_key=True)
+    analysis_id = Column(Integer, ForeignKey('analyses.id'), unique=True, nullable=False)
+    payload = Column(JSON, nullable=False)
+    analysis = relationship('Analysis', back_populates='model_prediction')
 
 
 class Signal(Base):
