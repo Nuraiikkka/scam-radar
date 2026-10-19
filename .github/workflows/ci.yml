@@ -110,10 +110,13 @@ jobs:
       - uses: browser-actions/setup-chrome@v1
         id: chrome
         with:
+          chrome-version: stable
           install-chromedriver: true
       - name: Integration tests in headless Chrome
+        env:
+          CHROME_EXECUTABLE: ${{ steps.chrome.outputs.chrome-path }}
         run: |
-          chromedriver --port=4444 &
+          "${{ steps.chrome.outputs.chromedriver-path }}" --port=4444 &
           flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart \
             -d web-server --browser-name=chrome --headless
       - name: Build web
