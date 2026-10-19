@@ -1,0 +1,153 @@
+name: scamradar
+
+x-backend-env: &backend-env
+  SCAMRADAR_ENV: prod
+  SCAMRADAR_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+  SCAMRADAR_REDIS_URL: redis://redis:6379/0
+  SCAMRADAR_SECRET_KEY: ${SCAMRADAR_SECRET_KEY}
+  SCAMRADAR_CORS_ORIGINS: '["https://${SCAMRADAR_DOMAIN}"]'
+  SCAMRADAR_TRUST_PROXY_HEADERS: "true"
+  SCAMRADAR_ADMIN_EMAIL: ${SCAMRADAR_ADMIN_EMAIL}
+  SCAMRADAR_ADMIN_PASSWORD: ${SCAMRADAR_ADMIN_PASSWORD}
+  SCAMRADAR_WHISPER_MODEL_SIZE: ${SCAMRADAR_WHISPER_MODEL_SIZE:-base}
+  SCAMRADAR_RATE_LIMIT_ANONYMOUS_PER_HOUR: ${SCAMRADAR_RATE_LIMIT_ANONYMOUS_PER_HOUR:-10}
+  SCAMRADAR_RATE_LIMIT_USER_PER_HOUR: ${SCAMRADAR_RATE_LIMIT_USER_PER_HOUR:-60}
+  SCAMRADAR_VIDEO_RETENTION_HOURS: ${SCAMRADAR_VIDEO_RETENTION_HOURS:-0}
+  SCAMRADAR_API_WORKERS: ${SCAMRADAR_API_WORKERS:-2}
+  SCAMRADAR_WORKER_CONCURRENCY: ${SCAMRADAR_WORKER_CONCURRENCY:-1}
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backups:/backups
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: always
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1g
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "256mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: always
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 384m
+
+  api:
+    image: ${BACKEND_IMAGE}:${IMAGE_TAG:-latest}
+    command: ["api"]
+    environment: *backend-env
+    volumes:
+      - media:/data/media
+      - logs:/data/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1g
+
+  worker:
+    image: ${BACKEND_IMAGE}:${IMAGE_TAG:-latest}
+    command: ["worker"]
+    environment: *backend-env
+    volumes:
+      - media:/data/media
+      - logs:/data/logs
+      - models:/models
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A app.workers.celery_app inspect ping -d celery@$$HOSTNAME --timeout 10 || exit 1"]
+      interval: 60s
+      timeout: 20s
+      start_period: 900s
+      retries: 3
+    restart: always
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 3g
+
+  web:
+    image: ${WEB_IMAGE}:${IMAGE_TAG:-latest}
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: always
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128m
+
+  caddy:
+    image: caddy:2.8-alpine
+    environment:
+      SCAMRADAR_DOMAIN: ${SCAMRADAR_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: always
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128m
+
+volumes:
+  pgdata:
+  redisdata:
+  media:
+  logs:
+  models:
+  caddy_data:
+  caddy_config:

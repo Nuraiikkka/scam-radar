@@ -1,0 +1,12 @@
+file,category,lang,has_speech,description
+scam_invest_ru.mp4,investment_platform,ru,yes,ДОХОД 30% В ДЕНЬ / БЕЗ РИСКА / t.me/profit_daily
+scam_invest_en.mp4,investment_platform,en,yes,EARN 20% DAILY / GUARANTEED PROFIT / @profit_daily
+scam_betting_ru.mp4,betting,ru,yes,ДОГОВОРНОЙ МАТЧ / КОЭФФИЦИЕНТ 15 / +7 701 555 12 34
+scam_giveaway_en.mp4,giveaway,en,yes,IPHONE GIVEAWAY / YOU WON! / PAY SHIPPING $9.99 / bit.ly/free-iphone17
+scam_job_ru.mp4,job_offer,ru,yes,РАБОТА ЗА ЛАЙКИ / 5000 ₸ В ДЕНЬ / @hr_remote
+scam_pyramid_en.mp4,pyramid,en,yes,INVITE 5 FRIENDS / GET $500 / JOIN MY TEAM
+safe_cooking_ru.mp4,none,ru,yes,РЕЦЕПТ ПЛОВА / ШАГ 1: РИС
+safe_travel_en.mp4,none,en,yes,ALMATY VLOG / DAY 2
+safe_warning_ru.mp4,none,ru,yes,"ОСТОРОЖНО, МОШЕННИКИ / ФИНАНСОВАЯ ГРАМОТНОСТЬ"
+silent_scam_screen.mp4,investment_platform,ru,no,ПАССИВНЫЙ ДОХОД / 40% В МЕСЯЦ / ГАРАНТИРОВАННО / tmelx_invest
+silent_no_text.mp4,none,none,no,no text on screen

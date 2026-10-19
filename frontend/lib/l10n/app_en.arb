@@ -1,0 +1,237 @@
+{
+  "@@locale": "en",
+  "appTitle": "Scam Radar",
+  "navHome": "Check",
+  "navHistory": "History",
+  "navStats": "Statistics",
+  "navSettings": "Settings",
+  "loading": "Loading…",
+  "retry": "Try again",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "close": "Close",
+  "onboardingTitle1": "Check a TikTok video",
+  "onboardingBody1": "Paste a link or pick a video file. We listen to the speech, read the text on screen and look for QR codes.",
+  "onboardingTitle2": "See why it looks risky",
+  "onboardingBody2": "You get a risk score, a category and clear reasons: promised profits, Telegram links, phone numbers and more.",
+  "onboardingTitle3": "This is advice, not a verdict",
+  "onboardingBody3": "Scam Radar gives a risk estimate, not a legal verdict. It can be wrong in both directions. Never send money to strangers.",
+  "onboardingNext": "Next",
+  "onboardingSkip": "Skip",
+  "onboardingAccept": "I understand, start",
+  "homeTitle": "Is this video a scam?",
+  "homeSubtitle": "Paste a TikTok link or upload a video file.",
+  "homeLinkLabel": "TikTok link",
+  "homeLinkHint": "https://www.tiktok.com/@user/video/…",
+  "homeLinkEmpty": "Paste a link first",
+  "homeLinkInvalid": "This is not a TikTok link",
+  "homeCheckLink": "Check link",
+  "homeOr": "or",
+  "homePickFile": "Upload a video file",
+  "homeFileTooLarge": "The file is larger than {mb} MB",
+  "@homeFileTooLarge": {
+    "placeholders": {
+      "mb": {
+        "type": "int"
+      }
+    }
+  },
+  "homeFileUnreadable": "Could not read this file",
+  "homeSharedLink": "Link received from another app",
+  "homeSending": "Sending…",
+  "homeLoginHint": "Log in to keep your history on all devices",
+  "homeLogin": "Log in",
+  "progressTitle": "Checking the video",
+  "stageQueued": "Waiting in line",
+  "stageDownloading": "Downloading the video",
+  "stageListening": "Listening to the speech",
+  "stageReadingScreen": "Reading the screen",
+  "stageScoring": "Scoring the risk",
+  "progressHint": "This usually takes less than a minute.",
+  "progressSlow": "This is taking longer than usual. You can wait or come back later from History.",
+  "progressBackground": "Continue in background",
+  "progressFailedTitle": "The check failed",
+  "progressBackHome": "Back to start",
+  "resultTitle": "Result",
+  "riskLow": "Low risk",
+  "riskMedium": "Medium risk",
+  "riskHigh": "High risk",
+  "riskUnknown": "No score",
+  "riskGaugeLabel": "Risk {percent} percent, {level}",
+  "@riskGaugeLabel": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "resultReasons": "Why",
+  "resultEvidence": "Evidence",
+  "resultTranscript": "Speech transcript",
+  "resultScreenText": "Text on screen",
+  "resultLinks": "Links",
+  "resultPhones": "Phone numbers",
+  "resultQr": "QR codes",
+  "resultNothingFound": "Nothing found",
+  "resultLanguage": "Language: {language}",
+  "@resultLanguage": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "resultShare": "Share",
+  "resultReportWrong": "Wrong verdict?",
+  "resultCheckAnother": "Check another video",
+  "resultDisclaimer": "This is a risk estimate, not a legal verdict.",
+  "resultCopied": "Result copied to the clipboard",
+  "shareText": "Scam Radar: {verdict} ({percent}%). Category: {category}.",
+  "@shareText": {
+    "placeholders": {
+      "verdict": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackTitle": "Was this result correct?",
+  "feedbackCorrect": "Yes, correct",
+  "feedbackIncorrect": "No, it is wrong",
+  "feedbackPickCategory": "What is the right category?",
+  "feedbackComment": "Comment (optional)",
+  "feedbackSend": "Send feedback",
+  "feedbackThanks": "Thank you! Your feedback helps us improve.",
+  "feedbackGiven": "You already rated this result",
+  "categoryInvestment": "Investment platform",
+  "categoryPyramid": "Pyramid scheme",
+  "categoryBetting": "Betting / casino",
+  "categoryGiveaway": "Fake giveaway",
+  "categoryJob": "Suspicious job offer",
+  "categoryNone": "No scam signs",
+  "sourceSpeech": "Speech",
+  "sourceScreenText": "Screen text",
+  "sourceQr": "QR code",
+  "sourceRule": "Rule",
+  "sourceClassifier": "Model",
+  "historyTitle": "History",
+  "historySearchHint": "Search by link or file name",
+  "historyFilterAll": "All",
+  "historyEmpty": "No checks yet",
+  "historyEmptyHint": "Your checked videos will appear here.",
+  "historyNoMatches": "Nothing matches your search",
+  "historyDeleted": "Deleted",
+  "historyStatusQueued": "Waiting",
+  "historyStatusRunning": "Checking…",
+  "historyStatusFailed": "Failed",
+  "historyLoadMore": "Load more",
+  "statsTitle": "Statistics",
+  "statsTotal": "Checks",
+  "statsScamShare": "Looked like scams",
+  "statsAverageTime": "Average time",
+  "statsSeconds": "{seconds} s",
+  "@statsSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "statsByCategory": "By category",
+  "statsRiskOverTime": "Average risk by day",
+  "statsEmpty": "No statistics yet. Check a video first.",
+  "statsScopeMine": "Mine",
+  "statsScopeAll": "Everyone",
+  "settingsTitle": "Settings",
+  "settingsLanguage": "Language",
+  "languageRussian": "Русский",
+  "languageEnglish": "English",
+  "settingsTheme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "settingsServer": "Server URL (developers)",
+  "settingsServerHint": "http://192.168.1.10:8000",
+  "settingsServerSave": "Save server",
+  "settingsServerReset": "Use default",
+  "settingsServerInvalid": "Enter a full address starting with http:// or https://",
+  "settingsServerSaved": "Server saved",
+  "settingsClearHistory": "Clear history",
+  "settingsClearHistoryConfirm": "Delete all your checks? This cannot be undone.",
+  "settingsClearHistoryDone": "Deleted {count} checks",
+  "@settingsClearHistoryDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsAccount": "Account",
+  "settingsLoggedInAs": "Logged in as {email}",
+  "@settingsLoggedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsNotLoggedIn": "You are not logged in. History is kept on this device only.",
+  "settingsLogout": "Log out",
+  "settingsLogin": "Log in or register",
+  "settingsAbout": "About",
+  "settingsVersion": "Version {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsShowIntro": "Show the introduction again",
+  "loginTitle": "Log in",
+  "registerTitle": "Create an account",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "emailInvalid": "Enter a valid email",
+  "passwordTooShort": "At least 8 characters",
+  "passwordRequired": "Enter your password",
+  "loginButton": "Log in",
+  "registerButton": "Create account",
+  "noAccount": "No account? Register",
+  "haveAccount": "Already have an account? Log in",
+  "continueWithoutLogin": "Continue without an account",
+  "loggedIn": "You are logged in",
+  "loggedOut": "You are logged out",
+  "offlineBanner": "You are offline. Check your internet connection.",
+  "errorOffline": "Cannot reach the server. Check your internet connection.",
+  "errorTimeout": "The server took too long to answer.",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "errorInvalidUrl": "This link is not a TikTok video.",
+  "errorVideoPrivate": "This video is private, so it cannot be checked.",
+  "errorVideoUnavailable": "This video was removed or is not available.",
+  "errorVideoTooLong": "The video is too long.",
+  "errorVideoTooLarge": "The video file is too large.",
+  "errorFileTooLarge": "The file is too large.",
+  "errorUnsupportedFile": "This file type is not supported. Use MP4, MOV, WEBM or MKV.",
+  "errorInvalidVideo": "This file is not a readable video.",
+  "errorEmptyFile": "The file is empty.",
+  "errorRateLimited": "Too many attempts. Please wait a little and try again.",
+  "errorQueueUnavailable": "The server is busy right now. Try again later.",
+  "errorQueueTimeout": "The check did not start in time. The server may be busy.",
+  "errorProcessingTimeout": "The check took too long.",
+  "errorDownloadFailed": "Could not download the video.",
+  "errorDownloadTimeout": "Downloading the video took too long.",
+  "errorInvalidCredentials": "Wrong email or password.",
+  "errorEmailTaken": "An account with this email already exists.",
+  "errorSessionExpired": "Your session has expired. Please log in again.",
+  "errorNotFound": "This check was not found.",
+  "errorServer": "The server had a problem. Please try again later."
+}

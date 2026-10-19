@@ -1,0 +1,9 @@
+build
+.dart_tool
+.idea
+android/.gradle
+ios/Pods
+ios/.symlinks
+test
+integration_test
+test_driver

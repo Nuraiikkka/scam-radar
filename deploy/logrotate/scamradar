@@ -1,0 +1,17 @@
+/var/lib/docker/volumes/scamradar_logs/_data/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}
+
+/opt/scam-radar/deploy/backups/*.log {
+    weekly
+    rotate 8
+    compress
+    missingok
+    notifempty
+}

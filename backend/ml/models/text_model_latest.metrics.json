@@ -1,0 +1,118 @@
+{
+  "version": "v1.0.0",
+  "trained_at": "2026-10-16T06:13:34.560743+00:00",
+  "dataset_rows": 800,
+  "synthetic_rows": 800,
+  "train_rows": 600,
+  "test_rows": 200,
+  "languages": {
+    "en": 370,
+    "ru": 370,
+    "kk": 60
+  },
+  "accuracy": 0.805,
+  "macro_f1": 0.8007,
+  "cv_macro_f1": [
+    0.8007,
+    0.8566,
+    0.8829,
+    0.7493
+  ],
+  "cv_macro_f1_mean": 0.8223,
+  "per_class": {
+    "investment_platform": {
+      "precision": 0.6829,
+      "recall": 0.8,
+      "f1": 0.7368,
+      "support": 35
+    },
+    "pyramid": {
+      "precision": 0.8065,
+      "recall": 0.8333,
+      "f1": 0.8197,
+      "support": 30
+    },
+    "betting": {
+      "precision": 0.6667,
+      "recall": 0.6667,
+      "f1": 0.6667,
+      "support": 30
+    },
+    "giveaway": {
+      "precision": 0.88,
+      "recall": 0.7333,
+      "f1": 0.8,
+      "support": 30
+    },
+    "job_offer": {
+      "precision": 0.8824,
+      "recall": 0.8571,
+      "f1": 0.8696,
+      "support": 35
+    },
+    "none": {
+      "precision": 0.9231,
+      "recall": 0.9,
+      "f1": 0.9114,
+      "support": 40
+    }
+  },
+  "confusion_matrix": [
+    [
+      28,
+      0,
+      7,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      25,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      5,
+      0,
+      20,
+      0,
+      2,
+      3
+    ],
+    [
+      0,
+      5,
+      3,
+      22,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      1,
+      30,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      36
+    ]
+  ],
+  "labels": [
+    "investment_platform",
+    "pyramid",
+    "betting",
+    "giveaway",
+    "job_offer",
+    "none"
+  ]
+}

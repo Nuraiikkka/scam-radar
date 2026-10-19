@@ -1,0 +1,40 @@
+[project]
+name = "scam-radar-backend"
+version = "1.0.0"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [".venv", "model_cache", "media", "logs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "ERA"]
+ignore = ["B008", "S101", "S603", "S311", "B904"]
+
+[tool.ruff.lint.isort]
+known-third-party = ["alembic"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S104", "S105", "S106", "S107", "S108"]
+"tests/conftest.py" = ["E402", "S105"]
+"ml/evaluate.py" = ["E402"]
+"scripts/export_openapi.py" = ["E402"]
+"alembic/*" = ["UP"]
+"app/settings/env/local.py" = ["S105"]
+"app/security/auth.py" = ["S105"]
+"scripts/run_samples_live.py" = ["S310"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "slow: needs ffmpeg, Whisper and EasyOCR models",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["app", "ml"]
+omit = ["app/settings/env/prod.py"]

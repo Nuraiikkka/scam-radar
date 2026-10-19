@@ -1,0 +1,16 @@
+*                                   @nuray-github
+/backend/                           @nuray-github @moldir-github
+/deploy/                            @nuray-github @moldir-github
+/backend/app/services/vision_frames.py @aisulu-github @nuray-github
+/backend/app/services/vision_ocr.py    @aisulu-github @nuray-github
+/backend/app/services/vision.py        @aisulu-github @nuray-github
+/backend/app/services/vision_rules.py  @aisulu-github @nuray-github
+/backend/app/services/pipeline.py      @aisulu-github @nuray-github
+/backend/app/services/text_classifier.py @aisulu-github
+/backend/app/services/fusion.py        @aisulu-github
+/backend/ml/                        @aisulu-github
+/data/                              @aisulu-github
+/frontend/                          @adiya-github
+/e2e/                               @adiya-github
+/.github/                           @nuray-github
+/docs/                              @nuray-github

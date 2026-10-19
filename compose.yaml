@@ -1,0 +1,4 @@
+name: scamradar
+
+include:
+  - deploy/docker-compose.yml
